@@ -20,8 +20,6 @@ bot.mutes = require("./mutes.json")
 
 const modrole = "Modérateur";
 
-const TOKEN = "NDE0ODQ3MjkxMzE3Mjg4OTcx.DYMFhA.mSLPZzAXq1dePXErs7sgkYlG8A8"
-
 var client = new Discord.Client();
 
 const youtube = new YouTube("AIzaSyDE684AY4Th50yKvN7lZ9GroJiFvF5yjy8");
@@ -633,4 +631,4 @@ var embed = new Discord.MessageEmbed()
 serverQueue.textChannel.send(embed)
 }
 
-bot.login(TOKEN);
+bot.login(process.env.TOKEN);
