@@ -600,6 +600,35 @@ Minutes Jouée : ${stats.br.stats.pc.squad.minutesPlayed}
             }
           })   
         break;
+        case "shop":
+        var options = {
+            method: "GET",
+            url: `https://fortnite.y3n.co/v2/shop`,
+            headers: {
+              'User-Agent': 'nodejs request',
+              'X-Key': "aFHHPJr6K2de8pAIARnJ"
+            }
+          }
+          request(options, (error, response, shop) => {
+            if (!error && response.statusCode == 200) {
+              shop = JSON.parse(shop);
+            }
+            message.channel.send("Boutique du jour :")
+            var array1 = shop.br.daily
+            array1.forEach(function(element) {
+                var embed = new Discord.MessageEmbed()
+                .setImage(element.imgURL.split(' ').join('%20'));
+                message.channel.send(embed)
+            })
+            message.channel.send("Boutique de la semaine :")
+            var array2 = shop.br.weekly
+            array2.forEach(function(element) {
+                var embed = new Discord.MessageEmbed()
+                .setImage(element.imgURL.split(' ').join('%20'));
+                message.channel.send(embed)
+            });
+        })
+        break;
             default:
             message.channel.send("Commande invalide ^^")
     }
